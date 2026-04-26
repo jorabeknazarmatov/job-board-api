@@ -21,6 +21,5 @@ async def get_health(db: Session = Depends(get_db)):
             status_code=500,
             detail=f"Datebase connected fail: {str(e)}"
         )
-    return {"db": "connected"}
 
 api_router.include_router(user.router, prefix="/users", tags=["users"])

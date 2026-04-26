@@ -7,7 +7,7 @@ logger.setLevel(logging.INFO)
 file_log = logging.FileHandler("app.log")
 console_log = logging.StreamHandler()
 
-formatter = logging.Formatter("%(asctime)s || %(levelname)s || %(filename)s:%(lineno)s || %(message)s", datefmt="%d-%M-%Y %H:%M:%S")
+formatter = logging.Formatter("%(asctime)s || %(levelname)s || %(filename)s:%(lineno)s || %(message)s", datefmt="%d-%m-%Y %H:%M:%S")
 
 file_log.setFormatter(formatter)
 console_log.setFormatter(formatter)

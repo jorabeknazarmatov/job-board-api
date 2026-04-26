@@ -19,7 +19,7 @@ class User(Base):
     def age(self) -> int:
         today = date.today()
         
-        age = today.year - self.birthday - (
+        age = today.year - self.birthday.year - (
             (today.month, today.day) < (self.birthday.month, self.birthday.day)
         )
         
