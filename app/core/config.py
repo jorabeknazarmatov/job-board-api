@@ -1,10 +1,18 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pathlib import Path
+from app.core.logger import logger
 
 
 current_file_dir = Path(__file__).resolve().parent
 BASE_DIR = current_file_dir.parent.parent
 ENV_PATH = BASE_DIR / ".env"
+
+logger.debug(f"Searching for .env file at: {ENV_PATH}")
+
+if not ENV_PATH.exists():
+    logger.warning(f".env file NOT found at {ENV_PATH}. Using default environment variables or OS env.")
+else:
+    logger.info(".env file found and being loaded.")
 
 class Settings(BaseSettings):
     DB_USER: str
@@ -21,6 +29,12 @@ class Settings(BaseSettings):
     
     @property
     def db_url(self):
+        logger.debug(f"Database URL generated: postgresql+psycopg2://{self.DB_USER}:***@{self.DB_IP}...")
         return f"postgresql+psycopg2://{self.DB_USER}:{self.DB_PASSWORD}@{self.DB_IP}:{self.DB_PORT}/{self.DB_NAME}"
 
-settings = Settings()
+try:
+    settings = Settings()
+    logger.info("Settings loaded successfully.")
+except Exception as e:
+    logger.critical(f"Failed to load settings: {e}")
+    raise e
