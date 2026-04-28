@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import text
 from app.api.deps import get_db
 from app.core.logger import logger
+from app.api.v1.endpoints import login
 
 
 api_router = APIRouter()
@@ -28,4 +29,5 @@ async def get_health(db: Session = Depends(get_db)):
             detail=f"Database connection failed: {str(e)}"
         )
 
-api_router.include_router(user.router, prefix="/users", tags=["users"])
+api_router.include_router(user.router, prefix="/api/v1/", tags=["users"])
+api_router.include_router(login.router, prefix="/api/v1/", tags=["login"])
