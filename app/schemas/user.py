@@ -41,3 +41,7 @@ class UserRead(UserBase):
     
     class Config:
         from_attributes = True
+
+class UserLoginSchema(BaseModel):
+    email: EmailStr
+    password: str
