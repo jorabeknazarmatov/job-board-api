@@ -25,7 +25,9 @@ class UserBase(BaseModel):
     def check_age(cls, v: date):
         
         today = date.today()
-        age = today.year - v.year - ((today.month - today.day) - (v.month - v.day))
+        age = today.year - v.year - (
+            (today.month, today.day) < (v.month, v.day)
+        )
         
         if age < 16:
             raise ValueError("You must be at least 16 years old to register.")      
