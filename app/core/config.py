@@ -20,6 +20,10 @@ class Settings(BaseSettings):
     DB_IP: str
     DB_PORT: int
     DB_NAME: str
+    ACCESS_TOKEN: int
+    REFRESH_TOKEN: int
+    ALGORITHM: str
+    SECRET_KEY: str
     
     model_config = SettingsConfigDict(
         env_file=ENV_PATH,
