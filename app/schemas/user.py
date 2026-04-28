@@ -36,8 +36,11 @@ class UserBase(BaseModel):
 class UserCreate(UserBase):
     pass
 
-class UserRead(UserBase):
+class UserRead(BaseModel):
     id: int
+    surname: str
+    name: str
+    email: EmailStr
     
     class Config:
         from_attributes = True

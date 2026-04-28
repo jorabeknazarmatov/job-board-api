@@ -32,5 +32,6 @@ def delete_refresh_token(db: Session, token: str):
             db.commit()
         return db_token
     except Exception as e:
+        db.rollback()
         logger.error(f"Database error during user creation: {e}")
         raise e
