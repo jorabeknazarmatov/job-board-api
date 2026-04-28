@@ -194,3 +194,8 @@ pip-selfcheck.json
 
 # database
 *.db
+
+# logs
+logs/
+Logs/
+*.log
