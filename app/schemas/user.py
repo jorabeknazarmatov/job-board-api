@@ -18,7 +18,7 @@ class UserBase(BaseModel):
     sex: SexEnum
     birthday: BirthDate
     email: EmailStr
-    password: str = Field(min_length=8, max_length=40)
+    password: str = Field(min_length=8)
     
     @field_validator("birthday")
     @classmethod
