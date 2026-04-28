@@ -14,6 +14,7 @@ class User(Base):
     sex: Mapped[str] = mapped_column(String(50), nullable=False)
     birthday: Mapped[date] = mapped_column(nullable=False)
     email: Mapped[str] = mapped_column(String, unique=True, nullable=False)
+    hashed_password: Mapped[str] = mapped_column(String(40), nullable=False)
     
     @property
     def age(self) -> int:
